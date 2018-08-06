@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserProvider } from '../../providers/user/user';
-import { RegisterPage } from '../register/register';
 
 @IonicPage()
 @Component({

@@ -60,7 +60,7 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <button [disabled]="((!userForm.valid) && (image === null))" (click)="register()" ion-button full color="purple">Continuar</button>
+            <button [disabled]="((!userForm.valid) || (image === null))" (click)="nextAddress()" ion-button full color="purple">Continuar</button>
           </ion-col>
         </ion-row>
       </ion-list>
@@ -75,7 +75,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-input [formControl]="addressForm.controls['cep']" type="number" placeholder="CEP"></ion-input>
+              <ion-input [formControl]="addressForm.controls['cep']" type="number" placeholder="CEP" (change)="getAdress($event.target.value)"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>

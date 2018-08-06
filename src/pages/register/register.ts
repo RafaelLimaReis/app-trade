@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserProvider } from '../../providers/user/user';
 import { CameraOptions, Camera } from '@ionic-native/camera';
+import { ViaCepProvider } from '../../providers/via-cep/via-cep';
 
 @IonicPage()
 @Component({
@@ -26,8 +27,11 @@ export class RegisterPage {
   constructor(
     private navCtrl: NavController,
     private formBuilder: FormBuilder,
+    private alertCtrl: AlertController,
     private userProvider: UserProvider,
-    public camera: Camera
+    private adressProvider: ViaCepProvider,
+    public camera: Camera,
+    private loadCtrl: LoadingController
   ) { }
 
   ngOnInit() {
@@ -60,7 +64,9 @@ export class RegisterPage {
   }
 
   register() {
+    this.dotClass.step3 = this.dotClass.step1;
     this.formNumber++;
+
     let user = {
       name: this.userForm.value['name'],
       lastname: this.userForm.value['lastname'],
@@ -94,6 +100,32 @@ export class RegisterPage {
 
     this.camera.getPicture(options).then((imageData) => {
       this.image = imageData;
+    });
+  }
+
+  getAdress(cep: number) {
+    let spinner = this.loadCtrl.create({
+      content: 'Buscando endereço',
+      spinner: 'crescent'
+    });
+
+    spinner.present();
+
+    this.adressProvider.getAdress(cep).subscribe(response => {
+      this.addressForm.controls['street'].setValue(response.logradouro);
+      this.addressForm.controls['district'].setValue(response.bairro);
+      this.addressForm.controls['city'].setValue(response.localidade);
+      this.addressForm.controls['state'].setValue(response.uf);
+      spinner.dismiss();
+    }, err => {
+      if (err.status === 404) {
+        this.alertCtrl.create({
+          title: 'Não foi encontrado nenhum endereço!',
+          message: 'Tente novamente.',
+          buttons: ['Ok']
+        }).present();
+        spinner.dismiss();
+      }
     });
   }
 

@@ -1,0 +1,9 @@
+<ion-list>
+  <ion-item *ngFor="let product of products" (click)="openDetail(product)">
+    <ion-avatar item-start *ngIf="product.images">
+      <img src="http://localhost:8080/storage/images/{{product.images[0].hash_name}}">
+    </ion-avatar>
+    <h2>{{ product.name }}</h2>
+    <p>Pertence a {{ product.tb_user.firstName }} {{product.tb_user.lastName }}</p>
+  </ion-item>
+</ion-list>

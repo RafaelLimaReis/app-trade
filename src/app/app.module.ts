@@ -10,6 +10,8 @@ import { ProductProvider } from '../providers/product/product';
 import { HttpClientModule } from '@angular/common/http';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { ConfigsApi } from '../providers/ConfigsApi';
+import { ViaCepProvider } from '../providers/via-cep/via-cep';
+import { Facebook } from '@ionic-native/facebook';
 
 @NgModule({
   declarations: [
@@ -29,12 +31,14 @@ import { ConfigsApi } from '../providers/ConfigsApi';
   providers: [
     Camera,
     FileTransfer,
+    Facebook,
     StatusBar,
     SplashScreen,
     UserProvider,
     ConfigsApi,
     ProductProvider,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ViaCepProvider
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

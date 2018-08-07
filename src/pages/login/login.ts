@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserProvider } from '../../providers/user/user';
-import { RegisterPage } from '../register/register';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 @IonicPage()
 @Component({
@@ -17,6 +17,7 @@ export class LoginPage {
 
   constructor(
     private navCtrl: NavController,
+    private fb: Facebook,
     private formBuilder: FormBuilder,
     private userProvider: UserProvider,
     private alert: AlertController,
@@ -57,6 +58,17 @@ export class LoginPage {
 
   register() {
     this.navCtrl.setRoot('RegisterPage', {}, { animate: true, direction: 'forward' });
+  }
+
+  loginFacebook() {
+    this.fb.login(['public_profile', 'email'])
+      .then((res: FacebookLoginResponse) => {
+        this.userProvider.loginFacebook(res.authResponse.accessToken).subscribe((res) => {
+          localStorage.setItem('user', JSON.stringify(res.data));
+          this.menu.enable(true);
+          this.navCtrl.setRoot('HomePage');
+        });
+      });
   }
 
 }

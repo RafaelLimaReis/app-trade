@@ -9,7 +9,7 @@ import { ProductProvider } from '../../providers/product/product';
 })
 export class HomePage {
 
-  public products: Array<any>;
+  public products;
 
   constructor(
     private product: ProductProvider

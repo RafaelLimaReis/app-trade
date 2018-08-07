@@ -2,7 +2,7 @@
   <ion-grid text-center>
     <ion-row>
       <ion-col>
-        <ion-img src="../../assets/imgs/Logo.svg"></ion-img>
+        <ion-img src="assets/imgs/Logo.svg"></ion-img>
       </ion-col>
     </ion-row>
     <form [formGroup]="loginForm">
@@ -39,7 +39,7 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <button ion-button full color="purple">
+            <button ion-button full color="purple" (click)="loginFacebook()">
               <ion-icon name="logo-facebook" style="font-size: 35px"></ion-icon>
             </button>
           </ion-col>

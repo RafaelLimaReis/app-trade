@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { ConfigsApi } from '../providers/ConfigsApi';
 import { ViaCepProvider } from '../providers/via-cep/via-cep';
+import { Facebook } from '@ionic-native/facebook';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ViaCepProvider } from '../providers/via-cep/via-cep';
   providers: [
     Camera,
     FileTransfer,
+    Facebook,
     StatusBar,
     SplashScreen,
     UserProvider,

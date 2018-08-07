@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
@@ -33,6 +33,16 @@ export class UserProvider {
     const fileTransfer: FileTransferObject = this.fileTransfer.create();
 
     return fileTransfer.upload(targetPath,`${this.url}users/register`, options);
+  }
+
+  loginFacebook(token:string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'access_token': token
+      })
+    };
+
+    return this.http.post(`${this.url}users/login/facebook/`, null, httpOptions);
   }
 
 }

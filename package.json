@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/camera": "^4.11.0",
     "@ionic-native/core": "~4.11.0",
+    "@ionic-native/facebook": "^4.11.0",
     "@ionic-native/file-transfer": "^4.11.0",
     "@ionic-native/splash-screen": "~4.11.0",
     "@ionic-native/status-bar": "~4.11.0",
@@ -30,6 +31,7 @@
     "cordova-browser": "5.0.3",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-facebook4": "^2.2.0",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-ionic-keyboard": "^2.1.2",
@@ -55,7 +57,12 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-file-transfer": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "cordova-plugin-facebook4": {
+        "APP_ID": "472772569824436",
+        "APP_NAME": "tcc_troca_de_usados",
+        "ANDROID_SDK_VERSION": "4.+"
+      }
     },
     "platforms": [
       "browser",

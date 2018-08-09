@@ -16,6 +16,7 @@
 // automatically applied to the <body> element in the app.
 @import url('https://fonts.googleapis.com/css?family=Montez');
 $tradeColor: #722DB2;
+$tradeLigth: #CE90E6;
 
 ion-title {
   font-family: 'Montez', cursive;
@@ -27,5 +28,9 @@ ion-title {
 }
 
 ion-icon[name="menu"]{
+  color: $tradeColor;
+}
+
+.back-button {
   color: $tradeColor;
 }

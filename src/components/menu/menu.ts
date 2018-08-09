@@ -1,22 +1,18 @@
 import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
 
-/**
- * Generated class for the MenuComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'menu',
   templateUrl: 'menu.html'
 })
 export class MenuComponent {
 
-  text: string;
+  constructor(
+    private navCtrl: NavController
+  ) {}
 
-  constructor() {
-    console.log('Hello MenuComponent Component');
-    this.text = 'Hello World';
+  pushPage(page:string) {
+    this.navCtrl.push(page, null, { animate: true, duration: 600, direction:'forward' });
   }
 
 }

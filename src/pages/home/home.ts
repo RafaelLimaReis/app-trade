@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage} from 'ionic-angular';
-import { ProductProvider } from '../../providers/product/product';
 
 @IonicPage()
 @Component({
@@ -11,22 +10,9 @@ export class HomePage {
 
   public products;
 
-  constructor(
-    private product: ProductProvider
-  ) {
-    this.findAllProducts();
-  }
+  constructor() {}
 
   ionViewDidLoad() {
     console.log('carregando..');
   }
-
-  findAllProducts() {
-    this.product.listProducts().subscribe(response => {
-      this.products = response.data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
 }

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from './home';
-import { ListProductsComponent } from '../../components/list-products/list-products';
+import { MenuComponent } from '../../components/menu/menu';
 
 @NgModule({
   declarations: [
     HomePage,
-    ListProductsComponent
+    MenuComponent
   ],
   imports: [
     IonicPageModule.forChild(HomePage),

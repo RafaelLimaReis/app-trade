@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ConfigsApi } from '../ConfigsApi';
@@ -19,21 +19,11 @@ export class ProductProvider {
     public http: HttpClient,
     private configs: ConfigsApi
   ) {
-    this.getHeaders();
+    this.httpOptions = this.configs.getHeaders();
   }
 
   listProducts(): Observable<any>{
     return this.http.get(`${this.url}products`, this.httpOptions);
-  }
-
-  private  getHeaders() {
-    let token = JSON.parse(localStorage.getItem('user')).token;
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-    };
   }
 
 }

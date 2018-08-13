@@ -54,4 +54,9 @@ export class MessagesPage {
     return observable;
   }
 
+  leaveRoom() {
+    this.socket.emit('disconnect', this.chat.room);
+    this.viewCtrl.dismiss();
+  }
+
 }

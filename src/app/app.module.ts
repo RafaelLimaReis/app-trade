@@ -12,6 +12,10 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import { ConfigsApi } from '../providers/ConfigsApi';
 import { ViaCepProvider } from '../providers/via-cep/via-cep';
 import { Facebook } from '@ionic-native/facebook';
+import { ChatProvider } from '../providers/chat/chat';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:8080/', options: {} };
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import { Facebook } from '@ionic-native/facebook';
     BrowserModule,
     IonicModule.forRoot(MyApp, {
       scrollAssist: false
-    })
+    }),
+    SocketIoModule.forRoot(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,9 +41,11 @@ import { Facebook } from '@ionic-native/facebook';
     SplashScreen,
     UserProvider,
     ConfigsApi,
+    ChatProvider,
     ProductProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ViaCepProvider
+    ViaCepProvider,
+    ChatProvider
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

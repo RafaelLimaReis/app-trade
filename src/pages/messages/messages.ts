@@ -32,6 +32,7 @@ export class MessagesPage {
     this.chat = this.navParams.get('chat');
     this.socket.connect();
     this.messages = this.chat.messages;
+    console.log(this.chat);
     this.socket.emit('rejoin', { room: this.chat.room});
     this.getMessages().subscribe(message => {
       this.messages.push(message);

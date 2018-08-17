@@ -1,9 +1,16 @@
-<ion-list>
-  <ion-item *ngFor="let product of products" (click)="openDetail(product)">
-    <ion-avatar item-start *ngIf="product?.images">
-      <img src="http://localhost:8080/storage/images/{{product?.images[0]?.hash_name}}">
-    </ion-avatar>
-    <h2>{{ product?.name }}</h2>
-    <p>Pertence a {{ product?.tb_user.firstName }} {{product?.tb_user.lastName }}</p>
-  </ion-item>
-</ion-list>
+<ion-grid>
+  <ion-row text-center>
+    <ion-card class="animated flipInY" *ngFor="let product of products">
+      <img src="http://localhost:8080/storage/images/{{product?.images[0]?.hash_name}}" />
+        <div class="card-title">
+          {{ product.name }}
+        </div>
+      <ion-card-content>
+        <button ion-button color="purple" outline (click)="openDetail(product)">Detalhes</button>
+        <button ion-button color="purple" id="{{product.id}}-{{product.name}}" outline icon-only (click)="likeProduct($event)">
+          <ion-icon name="heart"></ion-icon>
+        </button>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+</ion-grid>

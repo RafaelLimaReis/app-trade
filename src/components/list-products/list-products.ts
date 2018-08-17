@@ -15,4 +15,9 @@ export class ListProductsComponent {
     let modalPage = this.modalCtrl.create('ModalDetailProductPage', { product:product });
     modalPage.present();
   }
+
+  likeProduct(event) {
+    debugger;
+    console.log(event.target);
+  }
 }

@@ -1,24 +1,29 @@
-<!--
-  Generated template for the ModalDetailProductPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-  <ion-buttons left>
-    <button ion-button icon-only (click)="viewCtrl.dismiss()">
-      <ion-icon name="arrow-back"></ion-icon>
-    </button>
-  </ion-buttons>
-    <ion-title text-center>{{product?.name}}</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content padding>
-  <slider [images]="product.images"></slider>
-  limao
+  <ion-list>
+    <ion-item text-wrap>
+      <button ion-button class="back__button" icon-only (click)="navCtrl.pop()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+      <button ion-button class="like__button" end icon-only>
+        <ion-icon name="heart-outline" color="purple"></ion-icon>
+      </button>
+      <slider [images]="product?.images"></slider>
+      <div padding>
+        <h2>{{ product.name }}</h2>
+        <hr>
+        <ion-icon name="pin"></ion-icon>
+        Incididunt laborum consectetur ad dolor.
+        <hr>
+        <p style="color:#969696;">{{ product.description }} </p>
+      </div>
+    </ion-item>
+  </ion-list>
+  <div text-center>
+    <button ion-button round outline color="purple">Fazer Oferta</button>
+  </div>
+  <ion-fab right bottom class="animated fadeInRight">
+    <button ion-fab mini color="purple" (click)="openChat(product)">
+      <ion-icon name="chatbubbles"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

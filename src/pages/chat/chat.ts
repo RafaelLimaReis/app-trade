@@ -21,7 +21,6 @@ export class ChatPage {
 
   ionViewDidLoad() {
     this.chatProvider.getChats().subscribe(result => {
-      console.log(result);
       this.chats = result.data;
     })
   }

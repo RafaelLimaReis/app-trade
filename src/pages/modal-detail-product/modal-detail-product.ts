@@ -20,10 +20,17 @@ export class ModalDetailProductPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public viewCtrl: ViewController) {
+    public viewCtrl: ViewController
+  ) {
     this.product = this.navParams.get('product');
   }
 
-  ionViewDidLoad() {
+  openChat(product) {
+    this.navCtrl.push('StartChatPage', {
+      user: {
+        id: product.tb_user.id,
+        username: product.tb_user.userName
+      }
+    });
   }
 }

@@ -12,11 +12,10 @@ import { Slides } from 'ionic-angular';
   templateUrl: 'slider.html'
 })
 export class SliderComponent {
-  @Input() images: Array<any>;
+  @Input() images;
   @ViewChild(Slides) slides: Slides;
 
   constructor() {
-    console.log(this.slides);
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { ProductProvider } from '../../providers/product/product';
 
 /**
  * Generated class for the ModalDetailProductPage page.
@@ -20,7 +21,9 @@ export class ModalDetailProductPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    private productProvider: ProductProvider,
+    private toastCtrl: ToastController
   ) {
     this.product = this.navParams.get('product');
   }
@@ -32,5 +35,31 @@ export class ModalDetailProductPage {
         username: product.tb_user.userName
       }
     });
+  }
+
+  likeProduct(event) {
+    if (event.target.children[0].getAttribute('ng-reflect-name') === 'heart-outline') {
+      this.productProvider.likeProduct(event.target.children[0].id).subscribe(result => {
+        event.target.children[0].classList.add('ion-md-heart');
+        event.target.children[0].classList.remove('ion-md-heart-outline');
+        event.target.children[0].setAttribute('ng-reflect-name', 'heart');
+        this.toastCtrl.create({
+          message: 'Adicionado aos favoritos!',
+          duration: 3000,
+          position: 'bottom'
+        }).present();
+      }, err => console.log(err));
+    } else {
+      this.productProvider.deslikeProduct(event.target.children[0].id).subscribe(result => {
+        event.target.children[0].classList.add('ion-md-heart-outline');
+        event.target.children[0].classList.remove('ion-md-heart');
+        event.target.children[0].setAttribute('ng-reflect-name', 'heart-outline');
+        this.toastCtrl.create({
+          message: 'Removido dos favoritos!',
+          duration: 3000,
+          position: 'bottom'
+        }).present();
+      }, err => console.log(err));
+    }
   }
 }

@@ -3,6 +3,7 @@ page-modal-detail-product {
     position: absolute;
     transition: none 0s ease 0s;
     z-index: 2;
+    margin: 10px;
     background: transparent;
     color: black;
     box-shadow: none;
@@ -11,6 +12,7 @@ page-modal-detail-product {
   button.like__button {
     position: absolute;
     z-index: 2;
+    margin: 12px;
     background: transparent;
     margin-left: 85%;
     box-shadow: none;

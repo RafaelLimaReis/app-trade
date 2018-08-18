@@ -26,4 +26,12 @@ export class ProductProvider {
     return this.http.get(`${this.url}products`, this.httpOptions);
   }
 
+  likeProduct(product): Observable<any> {
+    return this.http.post(`${this.url}wishes`, {id_product: product}, this.httpOptions);
+  }
+
+  deslikeProduct(product): Observable<any> {
+    console.log(product);
+    return this.http.delete(`${this.url}wishes/${product}`, this.httpOptions);
+  }
 }

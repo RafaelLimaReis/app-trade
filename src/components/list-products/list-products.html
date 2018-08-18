@@ -7,8 +7,8 @@
         </div>
       <ion-card-content>
         <button ion-button color="purple" outline (click)="openDetail(product)">Detalhes</button>
-        <button ion-button color="purple" id="{{product.id}}-{{product.name}}" outline icon-only (click)="likeProduct($event)">
-          <ion-icon name="heart"></ion-icon>
+        <button ion-button color="purple" outline icon-only (click)="likeProduct($event)">
+          <ion-icon id="{{product.id}}" [name]="product.productWished.length > 0 ? 'heart' : 'heart-outline'" (click)="likeProduct($event)"></ion-icon>
         </button>
       </ion-card-content>
     </ion-card>

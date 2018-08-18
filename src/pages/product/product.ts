@@ -23,11 +23,13 @@ export class ProductPage {
     public navParams: NavParams,
     private product: ProductProvider
   ) {
+    this.findAllProducts();
   }
 
   findAllProducts() {
     this.product.listProducts().subscribe(response => {
       this.products = response.data;
+      console.log(this.products);
     }, err => {
       console.log(err);
     });

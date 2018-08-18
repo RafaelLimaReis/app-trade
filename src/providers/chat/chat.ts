@@ -10,18 +10,20 @@ import { Observable } from 'rxjs/Observable';
   and Angular DI.
 */
 @Injectable()
-export class ChatProvider {
-
-  private url: string = this.api.url();
-  private httpOptions = this.api.getHeaders();
+export class ChatProvider extends ConfigsApi {
 
   constructor(
-    public http: HttpClient,
-    public api: ConfigsApi
-  ) {}
+    public http: HttpClient
+  ) {
+    super();
+  }
 
   getChats(): Observable<any> {
-    return this.http.get(`${this.url}messages`, this.httpOptions);
+    return this.http.get(`${this.url()}messages`, this.getHeaders());
+  }
+
+  getChat(room): Observable<any> {
+    return this.http.get(`${this.url()}messages/${room}`, this.getHeaders());
   }
 
 }

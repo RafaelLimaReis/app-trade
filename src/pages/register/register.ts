@@ -63,25 +63,23 @@ export class RegisterPage {
     this.dotClass.step2 = this.dotClass.step1;
   }
 
-  register() {
+  registerComplete() {
     this.dotClass.step3 = this.dotClass.step1;
     this.formNumber++;
+    debugger;
 
-    let user = {
-      name: this.userForm.value['name'],
-      lastname: this.userForm.value['lastname'],
-      username: this.userForm.value['username'],
-      email: this.userForm.value['email'],
-      password: this.userForm.value['password'],
-      address: {
-        cep: this.addressForm.value['cep'],
-        street: this.addressForm.value['street'],
-        number: this.addressForm.value['number'],
-        district: this.addressForm.value['district'],
-        city: this.addressForm.value['city'],
-        state: this.addressForm.value['state']
-      }
-    }
+    let user = this.formSend(this.userForm, this.addressForm);
+
+    this.userProvider.register(user, this.image).then(res => {
+      console.log(res);
+    }).catch(error => console.error(JSON.stringify(error)));
+  }
+
+  registerUser() {
+    this.dotClass.step3 = this.dotClass.step1;
+    this.formNumber++;
+debugger;
+    let user = this.formSend(this.userForm);
 
     this.userProvider.register(user, this.image).then(res => {
       console.log(res);
@@ -131,6 +129,29 @@ export class RegisterPage {
 
   goToLogin() {
     this.navCtrl.setRoot('LoginPage', {}, { animate: true, direction: 'forward' });
+  }
+
+  private formSend(userForm:FormGroup = null, addressForm:FormGroup = null) {
+    let user = {
+      name: userForm.value['name'],
+      lastname: userForm.value['lastname'],
+      username: userForm.value['username'],
+      email: userForm.value['email'],
+      password: userForm.value['password'],
+      address: null
+    }
+    if (addressForm) {
+      user.address = {
+        cep: addressForm.value['cep'],
+        street: addressForm.value['street'],
+        number: addressForm.value['number'],
+        district: addressForm.value['district'],
+        city: addressForm.value['city'],
+        state: addressForm.value['state']
+      }
+    }
+
+    return user;
   }
 
 }

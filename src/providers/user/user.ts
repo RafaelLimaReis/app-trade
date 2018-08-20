@@ -20,7 +20,7 @@ export class UserProvider {
   }
 
   register(data: any, image): Promise<any> {
-
+    debugger;
     const targetPath = image;
     const options: FileUploadOptions = {
       fileKey: 'image',

@@ -60,7 +60,7 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <button [disabled]="((!userForm.valid) || (image === null))" (click)="nextAddress()" ion-button full color="purple">Continuar</button>
+            <button [disabled]="((!userForm.valid))" (click)="nextAddress()" ion-button full color="purple">Continuar</button>
           </ion-col>
         </ion-row>
       </ion-list>
@@ -114,7 +114,10 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <button [disabled]="!addressForm.valid" (click)="register()" ion-button full color="purple">Finalizar</button>
+            <button (click)="registerUser()" ion-button full color="purple">Pular</button>
+          </ion-col>
+          <ion-col>
+            <button [disabled]="!addressForm.valid" (click)="registerComplete()" ion-button full color="purple">Finalizar</button>
           </ion-col>
         </ion-row>
       </ion-list>

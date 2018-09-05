@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalController, ToastController } from 'ionic-angular';
+import { ToastController, NavController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
 
 @Component({
@@ -11,14 +11,13 @@ export class ListProductsComponent {
   @Input() products: Array<any>;
 
   constructor(
-    private modalCtrl: ModalController,
+    private navCtrl: NavController,
     private productProvider: ProductProvider,
     private toastCtrl: ToastController
   ) {}
 
   openDetail(product) {
-    let modalPage = this.modalCtrl.create('ModalDetailProductPage', { product:product });
-    modalPage.present();
+    this.navCtrl.push('ModalDetailProductPage', { product:product });
   }
 
   likeProduct(event) {

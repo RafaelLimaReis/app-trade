@@ -35,6 +35,7 @@ export class StartChatPage {
     this.chatProvider.getChat(`${this.user.userName}.${this.userProdut.username}`).subscribe(result => {
       this.chat = result.data[0];
       this.messages = result.data[0].messages;
+      console.log(this.chat);
     });
 
     this.getMessages().subscribe(message => {

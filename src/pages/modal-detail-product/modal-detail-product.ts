@@ -62,4 +62,8 @@ export class ModalDetailProductPage {
       }, err => console.log(err));
     }
   }
+
+  myProducts(){
+    this.navCtrl.push('MyProductsPage', { product: this.product }, { animate: true, duration: 600, direction: 'forward' });
+  }
 }

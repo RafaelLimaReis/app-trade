@@ -26,11 +26,10 @@ export class OffersPage {
     private productProvider: ProductProvider
   ) {
     console.log('chamando ofertas');
-    this.getOffers();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OffersPage');
+  ionViewWillEnter() {
+    this.getOffers();
   }
 
   getOffers() {
@@ -39,6 +38,10 @@ export class OffersPage {
       console.log(result.data);
       this.offersRecive = result.data[0].offersRecive;
     }, err => console.log(err));
+  }
+
+  viewOffer(offer) {
+    this.navCtrl.push('InfoOfferPage', {offer: offer});
   }
 
 }

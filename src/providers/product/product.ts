@@ -38,6 +38,10 @@ export class ProductProvider {
     return this.http.get(`${this.url}offer`, this.httpOptions);
   }
 
+  refuseOffer(id): Observable<any> {
+    return this.http.put(`${this.url}offer/${id}`, {'status': 'RECUSADO'} , this.httpOptions)
+  }
+
   likeProduct(product): Observable<any> {
     return this.http.post(`${this.url}wishes`, {id_product: product}, this.httpOptions);
   }

@@ -41,11 +41,11 @@ export class InfoOfferPage {
     this.imageCtrl.create(productImage).present();
   }
 
-  refuseOffer(id) {
-    this.productProvider.refuseOffer(id).subscribe(response =>
+  sendAlterOffer(id, status) {
+    this.productProvider.sendAlterOffer(id, status).subscribe(response =>
       this.alertCtrl.create({
         title: 'Aviso',
-        subTitle: 'Sua oferta foi recusada e não pode ser mais alterada!',
+        subTitle: this.getMessage(status),
         buttons: [{
           text: 'Ok',
           handler: () => {
@@ -54,6 +54,14 @@ export class InfoOfferPage {
         }]
       }).present()
     ,err => console.log(err));
+  }
+
+  private getMessage(status): string {
+    if (status === 'APROVADO') {
+      return 'Oferta aprovada, vamos avisar o ofertante para finalizar a troca';
+    } else {
+      return 'Sua oferta foi recusada e não pode ser mais alterada!';
+    }
   }
 
 }

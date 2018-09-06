@@ -69,10 +69,10 @@
     <div [hidden]="offer?.status !== 'AGUARDANDO'">
       <ion-row>
         <ion-col>
-          <button full ion-button color="secondary">Aceitar</button>
+          <button full ion-button color="secondary" (click)="sendAlterOffer(offer.id, 'APROVADO')">Aceitar</button>
         </ion-col>
         <ion-col>
-          <button full ion-button color="danger" (click)="refuseOffer(offer?.id)">Recusar</button>
+          <button full ion-button color="danger" (click)="sendAlterOffer(offer?.id, 'REPROVADO')">Recusar</button>
         </ion-col>
       </ion-row>
       <ion-row>

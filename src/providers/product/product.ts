@@ -38,8 +38,8 @@ export class ProductProvider {
     return this.http.get(`${this.url}offer`, this.httpOptions);
   }
 
-  refuseOffer(id): Observable<any> {
-    return this.http.put(`${this.url}offer/${id}`, {'status': 'RECUSADO'} , this.httpOptions)
+  sendAlterOffer(id, data): Observable<any> {
+    return this.http.put(`${this.url}offer/${id}`, {'status': data} , this.httpOptions)
   }
 
   likeProduct(product): Observable<any> {

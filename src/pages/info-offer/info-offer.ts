@@ -56,6 +56,10 @@ export class InfoOfferPage {
     ,err => console.log(err));
   }
 
+  otherOffer(offer){
+    this.navCtrl.push('MyProductsPage', {offer: offer});
+  }
+
   private getMessage(status): string {
     if (status === 'APROVADO') {
       return 'Oferta aprovada, vamos avisar o ofertante para finalizar a troca';

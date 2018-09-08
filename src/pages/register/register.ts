@@ -66,7 +66,6 @@ export class RegisterPage {
   registerComplete() {
     this.dotClass.step3 = this.dotClass.step1;
     this.formNumber++;
-    debugger;
 
     let user = this.formSend(this.userForm, this.addressForm);
 
@@ -78,7 +77,7 @@ export class RegisterPage {
   registerUser() {
     this.dotClass.step3 = this.dotClass.step1;
     this.formNumber++;
-debugger;
+
     let user = this.formSend(this.userForm);
 
     this.userProvider.register(user, this.image).then(res => {

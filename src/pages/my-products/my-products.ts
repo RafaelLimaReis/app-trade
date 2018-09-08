@@ -16,7 +16,9 @@ import { ProductProvider } from '../../providers/product/product';
 })
 export class MyProductsPage {
   private product = this.navParams.get('product');
-  private products;
+  private offer = this.navParams.get('offer');
+  private user = JSON.parse(localStorage.getItem('user')).id;
+  public products;
   public selectedProducts: Array<any> = new Array();
   constructor(
     public navCtrl: NavController,
@@ -24,14 +26,23 @@ export class MyProductsPage {
     private productProvider: ProductProvider,
     private alertCtrl: AlertController
   ) {
-    this.findMyProducts();
+    console.log(this.offer);
+    if ((this.offer)) {
+      if ((this.offer.start) && (this.offer.start.id_firstUser === this.user)) {
+        this.findMyProducts();
+      } else {
+        this.otherProducts();
+      }
+    } else {
+      this.findMyProducts();
+    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyProductsPage');
   }
 
-  protected findMyProducts() {
+  private findMyProducts() {
     this.productProvider.listMyProducts().subscribe(result => {
       this.products = result.data;
     });
@@ -51,12 +62,15 @@ export class MyProductsPage {
   sendOffer() {
     let data = {
       'id_fistUser': JSON.parse(localStorage.getItem('user')).id,
-      'id_lastUser': this.product.id_user,
-      'id_offerStart': 0,
+      'id_lastUser': this.product ? this.product.id_user : this.offer.id_firstUser,
+      'id_offerStart': this.offer ? this.offer.start ? this.offer.start.id : this.offer.id : 0,
       'status': 'AGUARDANDO',
-      'products': [{
+      'products': []
+    }
+    if (this.product) {
+      data.products.push({
         'id_product': this.product.id
-      }]
+      });
     }
     this.selectedProducts.forEach(element => {
       data.products.push({
@@ -65,7 +79,6 @@ export class MyProductsPage {
     });
 
     this.productProvider.sendOffer(data).subscribe(result => {
-      console.log('aqui');
       this.alertCtrl.create({
         title: 'Oferta Realizada',
         message: 'Sua oferta foi enviada, porfavor aguarde a resposta do outro usuario.',
@@ -82,4 +95,9 @@ export class MyProductsPage {
     }, err => console.log(err));
   }
 
+  private otherProducts() {
+    this.productProvider.listOtherProducts(this.offer.id_firstUser).subscribe(result => {
+      this.products = result.data;
+    });
+  }
 }

@@ -29,6 +29,9 @@ export class ProductProvider {
   listMyProducts(): Observable<any> {
     return this.http.get(`${this.url}me/products`, this.httpOptions);
   }
+  listOtherProducts(id: number): Observable<any> {
+    return this.http.get(`${this.url}other/${id}/products`, this.httpOptions);
+  }
 
   sendOffer(data): Observable<any> {
     return this.http.post(`${this.url}offer`, data, this.httpOptions);
@@ -36,6 +39,10 @@ export class ProductProvider {
 
   getOffers(): Observable<any> {
     return this.http.get(`${this.url}offer`, this.httpOptions);
+  }
+
+  sendAlterOffer(id, data): Observable<any> {
+    return this.http.put(`${this.url}offer/${id}`, {'status': data} , this.httpOptions)
   }
 
   likeProduct(product): Observable<any> {

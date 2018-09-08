@@ -14,6 +14,7 @@ import { ViaCepProvider } from '../providers/via-cep/via-cep';
 import { Facebook } from '@ionic-native/facebook';
 import { ChatProvider } from '../providers/chat/chat';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 const config: SocketIoConfig = { url: 'http://localhost:8080/', options: {} };
 
@@ -24,6 +25,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080/', options: {} };
   imports: [
     HttpClientModule,
     BrowserModule,
+    IonicImageViewerModule,
     IonicModule.forRoot(MyApp, {
       scrollAssist: false
     }),
